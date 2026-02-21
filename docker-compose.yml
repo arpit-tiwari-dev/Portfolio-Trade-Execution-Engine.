@@ -1,0 +1,7 @@
+version: "3.8"
+
+services:
+  trade-engine:
+    build: .
+    ports:
+      - "8000:8000"
