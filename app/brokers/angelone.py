@@ -1,4 +1,5 @@
 from app.brokers.base import BrokerAdapter
+from app.models.schemas import OrderResult
 
 
 class AngelOneAdapter(BrokerAdapter):
@@ -7,12 +8,12 @@ class AngelOneAdapter(BrokerAdapter):
         return True
 
     def place_order(self, symbol: str, quantity: int, side: str) -> dict:
-        return {
-            "symbol": symbol,
-            "quantity": quantity,
-            "side": side,
-            "status": "SUCCESS"
-        }
+        return OrderResult(
+            symbol=symbol,
+            quantity=quantity,
+            side=side,
+            status="Success",
+        )
 
     def get_holdings(self):
         return []

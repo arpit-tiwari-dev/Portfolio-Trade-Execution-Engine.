@@ -1,4 +1,5 @@
 import time
+from app.models.schemas import OrderResult
 
 
 class ExecutionEngine:
@@ -25,13 +26,13 @@ class ExecutionEngine:
                 except Exception as e:
 
                     if attempt == 2:
-                        results.append({
-                            "symbol": order.symbol,
-                            "quantity": order.quantity,
-                            "side": order.action,
-                            "status": "FAILED",
-                            "reason": str(e)
-                        })
+                        results.append(OrderResult(
+                            symbol=order.symbol,
+                            quantity=order.quantity,
+                            side=order.action,
+                            status="FAILED",
+                            reason=str(e)
+                        ))
                     else:
                         time.sleep(1)
 
